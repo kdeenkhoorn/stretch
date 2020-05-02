@@ -24,8 +24,7 @@ pipeline {
         stage ('Build stretch base image') {
             steps {
                 /* Build stretch base image */
-                sh 'sudo /usr/sbin/debootstrap --variant=minbase stretch stretch \
-                    && sudo tar -C stretch -c . | docker import - kdedesign/debian-stretch:latest'
+                sh './create_image.sh'
             }
         }
         stage ('Publish stretch base docker image to Docker Hub') {
